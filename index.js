@@ -5,9 +5,9 @@ const merge = (keys, defaults = {}) => {
   let properties = {};
   let env = process.env;
   keys.forEach(key => {
-    let value = defaults[key];
+    let value = env[key];
     if(value === undefined) {
-      value = env[key];
+      value = defaults[key];
     }
     properties[key] = value;
   });

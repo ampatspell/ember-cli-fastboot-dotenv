@@ -13,9 +13,9 @@ const merge = config => {
   let { keys, properties } = config;
   let merged = {};
   keys.forEach(key => {
-    let value = properties[key];
+    let value = env[key];
     if(value === undefined) {
-      value = env[key];
+      value = properties[key];
     }
     merged[key] = value;
   });

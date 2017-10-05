@@ -26,15 +26,6 @@ module.exports = function(defaults) {
 };
 ```
 
-Add `ember-cli-fastboot-dotenv` to FastBoot whitelist. Addon requires itself in FastBoot to lookup `process.env` variables.
-
-``` json
-// package.json
-"fastbootDependencies": [
-  "ember-cli-fastboot-dotenv"
-]
-```
-
 Build your app without `.env` or keep it for defaults.
 
 ```

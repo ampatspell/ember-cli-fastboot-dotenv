@@ -1,6 +1,6 @@
 # ember-cli-fastboot-dotenv
 
-`ember-cli-dotenv`-like addon but for FastBoot.
+`ember-cli-dotenv`-like addon for Ember.js for FastBoot which allows to use environment variables passed to FastBoot server in runtime.
 
 Use `.env` file for development and production defaults.
 
@@ -52,5 +52,4 @@ export default {
     // ...
   }
 };
-
 ```

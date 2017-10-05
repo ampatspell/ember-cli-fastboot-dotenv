@@ -11,7 +11,22 @@ DATABASE_NAME=ohne-zeit
 CHANGES_FEED=event-source
 ```
 
-Without `.env` or keep 'em for defaults.
+Set allowed keys in `ember-cli-build`:
+
+``` javascript
+const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+
+module.exports = function(defaults) {
+  let app = new EmberApp(defaults, {
+    'ember-cli-fastboot-dotenv': {
+      keys: [ 'COUCH_URL', 'DATABASE_NAME', 'CHANGES_FEED' ]
+    }
+  });
+  return app.toTree();
+};
+```
+
+Build your app without `.env` or keep it for defaults.
 
 ```
 $ ember build -prod

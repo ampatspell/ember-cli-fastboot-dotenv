@@ -47,7 +47,7 @@ app.listen(3000);
 $ COUCH_URL=http://server:5984 ./fastboot-server.js
 ```
 
-## Configuration lookup in the app (FastBoot and browser)
+## Configuration lookup in the app (FastBoot and Browser)
 
 ``` javascript
 // app/instance-initializers/store.js

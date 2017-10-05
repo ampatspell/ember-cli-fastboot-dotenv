@@ -1,26 +1,56 @@
 # ember-cli-fastboot-dotenv
 
-This README outlines the details of collaborating on this Ember addon.
+`ember-cli-dotenv`-like addon but for FastBoot.
 
-## Installation
+Use `.env` file for development and production defaults.
 
-* `git clone <repository-url>` this repository
-* `cd ember-cli-fastboot-dotenv`
-* `npm install`
+```
+// .env
+COUCH_URL=http://127.0.0.1:5984
+DATABASE_NAME=ohne-zeit
+CHANGES_FEED=event-source
+```
 
-## Running
+Without `.env` or keep 'em for defaults.
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+```
+$ ember build -prod
+$ cd dist
+$ npm install
+```
 
-## Running Tests
+Override `.env` defaults with environment variables when running in FastBoot:
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
+``` javascript
+// fastboot-server.js
+const app = express();
+app.get('/*', fastboot('./dist'));
+app.listen(3000);
+```
 
-## Building
+```
+$ COUCH_URL=http://server:5984 ./fastboot-server.js
+```
 
-* `ember build`
+## Configuration lookup in the app (FastBoot and browser)
 
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+``` javascript
+// app/instance-initializers/store.js
+
+export default {
+  name: 'app:store',
+  after: 'ember-cli-fastboot-dotenv',
+  initialize(app) {
+    let dotenv = app.lookup('service:dotenv');
+
+    let {
+      couchURL,
+      databaseName,
+      changesFeed
+    } = dotenv.getProperties('couchURL', 'databaseName', 'changesFeed');
+
+    // ...
+  }
+};
+
+```

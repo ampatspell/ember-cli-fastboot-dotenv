@@ -1,9 +1,13 @@
 {
   "name": "ember-cli-fastboot-dotenv",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "The default blueprint for ember-cli addons.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "configuration",
+    "env",
+    "dotenv",
+    "fastboot"
   ],
   "license": "MIT",
   "author": "Arnis Vuskans <ampatspell@gmail.com>",

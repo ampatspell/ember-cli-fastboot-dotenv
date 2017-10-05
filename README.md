@@ -4,6 +4,8 @@
 
 Use `.env` file for development and production defaults.
 
+See [Ohne Zeit](https://github.com/ampatspell/ohne-zeit) as an example from which the following info is extracted from.
+
 ```
 // .env
 COUCH_URL=http://127.0.0.1:5984

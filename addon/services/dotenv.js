@@ -53,8 +53,13 @@ export default Ember.Service.extend({
         });
         this.set('properties', properties);
       } else {
+        let properties;
         let object = shoebox.retrieve(identifier);
-        let properties = object.properties;
+        if(object) {
+          properties = object.properties;
+        } else {
+          properties = config.properties;
+        }
         this.set('properties', properties);
       }
     } else {

@@ -3,7 +3,14 @@
 
 const merge = (keys, defaults = {}) => {
   let properties = {};
-  keys.forEach(key => properties[key] = defaults[key] || process.env[key]);
+  let env = process.env;
+  keys.forEach(key => {
+    let value = defaults[key];
+    if(value === undefined) {
+      value = env[key];
+    }
+    properties[key] = value;
+  });
   return properties;
 }
 
@@ -41,8 +48,5 @@ module.exports = {
         properties
       }
     };
-  },
-  _fastbootProperties(config) {
-    return merge(config.keys, config.properties);
   }
 };

@@ -8,6 +8,20 @@ const {
 
 const identifier = 'ember-cli-fastboot-dotenv';
 
+const merge = config => {
+  let env = FastBoot.require('process').env;
+  let { keys, properties } = config;
+  let merged = {};
+  keys.forEach(key => {
+    let value = properties[key];
+    if(value === undefined) {
+      value = env[key];
+    }
+    merged[key] = value;
+  });
+  return merged;
+};
+
 export default Ember.Service.extend({
 
   properties: null,
@@ -31,7 +45,7 @@ export default Ember.Service.extend({
     if(fastboot) {
       let shoebox = fastboot.get('shoebox');
       if(fastboot.get('isFastBoot')) {
-        let properties = FastBoot.require('ember-cli-fastboot-dotenv')._fastbootProperties(config);
+        let properties = merge(config);
         shoebox.put(identifier, {
           get properties() {
             return properties;
